@@ -8,81 +8,26 @@ import { connect } from 'react-redux';
 import actions from '../redux/actions/actions';
 
 class PhoneBook extends Component {
-  // state = {
-  //   filter: '',
-  // };
+  componentDidUpdate() {
+    if (this.props.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.props.contacts));
+    }
+  }
 
-  // componentDidUpdate() {
-  //   console.log('hi1');
-  //   if (this.props.contacts) {
-  //     console.log('hi2');
-  //     localStorage.setItem('contacts', JSON.stringify(this.props.contacts));
-  //   }
-  // }
-
-  // componentDidMount() {
-  //   // console.log('hi1');
-  //   // if (this.props.contacts) {
-  //   //   console.log('hi2');
-  //   //   localStorage.setItem('contacts', JSON.stringify(this.props.contacts));
-  //   // }
-
-  //   const localStorageContacts = JSON.parse(localStorage.getItem('contacts'));
-  //   if (localStorageContacts) {
-  //     this.props.addToLocalStorage(localStorageContacts);
-  //   }
-  // }
-
-  // handleState = e => {
-  //   const { value } = e.target;
-  //   this.props.handleFilter(value);
-  // };
-
-  // filterContactsByName = e => {
-  //   this.handleState(e);
-
-  //   if (this.props.filter !== '') {
-  //     const result = this.props.contacts.filter(contact => {
-  //       return contact.name
-  //         .toLowerCase()
-  //         .includes(this.props.filter.toLowerCase());
-  //     });
-  //     this.props.filterContacts(result);
-  //     return;
-  //   }
-  //   this.props.setFilteredContactsEmpty();
-  // };
-
-  // updateState = data => {
-  //   this.setState({
-  //     contacts: data,
-  //   });
-  // };
+  componentDidMount() {
+    const localStorageContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (localStorageContacts) {
+      this.props.addToLocalStorage(localStorageContacts);
+    }
+  }
 
   render() {
-    // console.log(this.props);
     return (
       <Container>
-        <ContactForm
-        // updateState={this.updateState}
-        // handleChangeInState={this.handleChangeInState}
-        // addContact={this.addContact}
-        />
+        <ContactForm />
         <h1>Contacts</h1>
-        <Filter
-        // filterContactsByName={this.filterContactsByName}
-        // name="filter"
-        // value={this.state.filter}
-        />
-        <ContactsList
-        // filtredContacts={this.state.filtredContacts}
-        // contacts={
-        //   this.state.filter !== ''
-        //     ? this.state.filteredContacts
-        //     : this.state.contacts
-        // }
-        // deleteContact={this.props.deleteContact}
-        />
+        <Filter />
+        <ContactsList />
       </Container>
     );
   }

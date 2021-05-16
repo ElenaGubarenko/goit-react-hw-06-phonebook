@@ -17,7 +17,7 @@ const filterContacts = value => ({
 
 const setFilteredContactsEmpty = () => ({
   type: types.setFilteredContactsEmpty,
-  payload: [],
+  // payload: [],
 });
 
 const updateState = value => ({

@@ -7,10 +7,9 @@ import actions from '../redux/actions/actions';
 
 class ContactsList extends Component {
   render() {
-    console.log(this.props);
     return (
       <ul className={styles.ContactsList}>
-        {(this.props.filter !== '' && this.props.filter
+        {(this.props.filter !== ''
           ? this.props.filteredContacts
           : this.props.contacts
         ).map(contact => {
@@ -40,7 +39,7 @@ class ContactsList extends Component {
 const mapStateToProps = state => ({
   contacts: state.contacts,
   filter: state.filter,
-  filteredContacts: state.filtredContacts,
+  filteredContacts: state.filteredContacts,
 });
 
 const mapDispatchToProps = dispatch => ({

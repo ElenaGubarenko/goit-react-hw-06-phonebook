@@ -41,14 +41,11 @@ class ContactForm extends Component {
       return alert(`${this.state.name} already exists`);
     }
 
-    this.props.contacts.push(user);
-    this.props.addContact(this.props.contacts);
-    // this.props.updateState(this.props.contacts);
+    this.props.addContact(user);
     this.resetInput();
   };
 
   render() {
-    console.log(this.props);
     return (
       <form onSubmit={this.addContact} className={styles.ContactForm}>
         <h1>Phonebook</h1>
