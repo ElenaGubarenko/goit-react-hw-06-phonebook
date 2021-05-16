@@ -3,18 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import 'modern-normalize/modern-normalize.css';
 
-// import rootPhoneBookReducer from './redux/reducers/PhoneBookReducer';
-import contactsReducer from './redux/reducers/PhoneBookReducer';
-
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import store from './redux/store';
 import { Provider } from 'react-redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-
-// const rootReducer = combineReducers({
-//   rootPhoneBookReducer: rootPhoneBookReducer,
-// });
-
-const store = createStore(contactsReducer, composeWithDevTools());
 
 ReactDOM.render(
   <React.StrictMode>

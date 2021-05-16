@@ -9,7 +9,7 @@ class Filter extends Component {
   filterContactsByName = e => {
     this.props.handleFilter(e.target.value);
 
-    if (this.props.filter !== '') {
+    if (this.props.filter !== '' && this.props.filter) {
       const result = this.props.contacts.filter(contact => {
         return contact.name
           .toLowerCase()

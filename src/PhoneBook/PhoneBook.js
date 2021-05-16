@@ -12,26 +12,26 @@ class PhoneBook extends Component {
   //   filter: '',
   // };
 
-  componentDidUpdate() {
-    console.log('hi1');
-    if (this.props.contacts) {
-      console.log('hi2');
-      localStorage.setItem('contacts', JSON.stringify(this.props.contacts));
-    }
-  }
+  // componentDidUpdate() {
+  //   console.log('hi1');
+  //   if (this.props.contacts) {
+  //     console.log('hi2');
+  //     localStorage.setItem('contacts', JSON.stringify(this.props.contacts));
+  //   }
+  // }
 
-  componentDidMount() {
-    // console.log('hi1');
-    // if (this.props.contacts) {
-    //   console.log('hi2');
-    //   localStorage.setItem('contacts', JSON.stringify(this.props.contacts));
-    // }
+  // componentDidMount() {
+  //   // console.log('hi1');
+  //   // if (this.props.contacts) {
+  //   //   console.log('hi2');
+  //   //   localStorage.setItem('contacts', JSON.stringify(this.props.contacts));
+  //   // }
 
-    const localStorageContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (localStorageContacts) {
-      this.props.addToLocalStorage(localStorageContacts);
-    }
-  }
+  //   const localStorageContacts = JSON.parse(localStorage.getItem('contacts'));
+  //   if (localStorageContacts) {
+  //     this.props.addToLocalStorage(localStorageContacts);
+  //   }
+  // }
 
   // handleState = e => {
   //   const { value } = e.target;
