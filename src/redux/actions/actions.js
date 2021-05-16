@@ -1,39 +1,53 @@
-import types from '../actionTypes/actionTypes';
+// import types from '../actionTypes/actionTypes';
+import { createAction } from '@reduxjs/toolkit';
 
-const deleteContact = id => ({
-  type: types.deleteContact,
-  payload: id,
-});
+const deleteContact = createAction('deleteContact');
+const addLocalStorageContacts = createAction('addLocalStorageContacts');
+const filterContacts = createAction('filterContacts');
+const setFilteredContactsEmpty = createAction(
+  'setFilteredContactsEmpty',
+  () => ({
+    payload: [],
+  }),
+);
+const updateState = createAction('updateState');
+const handleFilter = createAction('handleFilter');
+const addContact = createAction('addContact');
 
-const addLocalStorageContacts = value => ({
-  type: types.addLocalStorageContacts,
-  payload: value,
-});
+// const deleteContact = id => ({
+//   type: types.deleteContact,
+//   payload: id,
+// });
 
-const filterContacts = value => ({
-  type: types.filterContacts,
-  payload: value,
-});
+// const addLocalStorageContacts = value => ({
+//   type: types.addLocalStorageContacts,
+//   payload: value,
+// });
 
-const setFilteredContactsEmpty = () => ({
-  type: types.setFilteredContactsEmpty,
-  // payload: [],
-});
+// const filterContacts = value => ({
+//   type: types.filterContacts,
+//   payload: value,
+// });
 
-const updateState = value => ({
-  type: types.updateState,
-  payload: value,
-});
+// const setFilteredContactsEmpty = () => ({
+//   type: types.setFilteredContactsEmpty,
+//   // payload: [],
+// });
 
-const handleFilter = value => ({
-  type: types.handleFilter,
-  payload: value,
-});
+// const updateState = value => ({
+//   type: types.updateState,
+//   payload: value,
+// });
 
-const addContact = value => ({
-  type: types.addContact,
-  payload: value,
-});
+// const handleFilter = value => ({
+//   type: types.handleFilter,
+//   payload: value,
+// });
+
+// const addContact = value => ({
+//   type: types.addContact,
+//   payload: value,
+// });
 
 export default {
   deleteContact,

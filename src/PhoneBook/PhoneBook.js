@@ -34,8 +34,8 @@ class PhoneBook extends Component {
 }
 
 const mapStateToProps = state => ({
-  contacts: state.contacts,
-  filter: state.filter,
+  contacts: state.toolkitContactsReducer,
+  filter: state.toolkitFilterReducer,
 });
 
 const mapDispatchToProps = dispatch => ({
