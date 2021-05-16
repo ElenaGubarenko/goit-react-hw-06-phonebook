@@ -44,9 +44,9 @@ Filter.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  contacts: state.rootPhoneBookReducer.contactsReducer.contacts,
-  filter: state.rootPhoneBookReducer.contactsReducer.filter,
-  filteredContacts: state.rootPhoneBookReducer.contactsReducer.filtredContacts,
+  contacts: state.contacts,
+  filter: state.filter,
+  filteredContacts: state.filtredContacts,
 });
 
 const mapDispatchToProps = dispatch => ({

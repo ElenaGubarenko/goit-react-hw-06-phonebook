@@ -49,8 +49,10 @@ const contactsReducer = (
   }
 };
 
-const rootPhoneBookReducer = combineReducers({
-  contactsReducer: contactsReducer,
-});
+// const rootPhoneBookReducer = combineReducers({
+//   contactsReducer: contactsReducer,
+// });
 
-export default rootPhoneBookReducer;
+// export default rootPhoneBookReducer;
+
+export default contactsReducer;
