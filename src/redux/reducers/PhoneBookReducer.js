@@ -10,15 +10,14 @@ const contactsReducer = (
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    // filter: '',
-    // filtredContacts: [],
+    filtredContacts: [],
+    filter: '',
   },
   action,
 ) => {
   switch (action.type) {
     case types.deleteContact:
       return {
-        // ...state,
         contacts: state.contacts.filter(
           contact => contact.id !== action.payload,
         ),
@@ -27,12 +26,28 @@ const contactsReducer = (
       return {
         contacts: action.payload,
       };
+    case types.filterContacts:
+      return {
+        filteredContacts: action.payload,
+      };
+    case types.setFilteredContactsEmpty:
+      return {
+        filteredContacts: action.payload,
+      };
+    case types.handleFilter:
+      return {
+        filter: action.payload,
+      };
+    case types.default:
+      return state;
+    case types.addContact:
+      return {
+        contacts: action.payload,
+      };
     default:
       return state;
   }
 };
-
-// const addLocalStorageContacts = ()
 
 const rootPhoneBookReducer = combineReducers({
   contactsReducer: contactsReducer,

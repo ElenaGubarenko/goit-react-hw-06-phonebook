@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 import { connect } from 'react-redux';
 import ContactFormActions from '../redux/actions/ContactFormActions';
+import actions from '../redux/actions/actions';
 
 class ContactForm extends Component {
   state = {
@@ -42,7 +43,8 @@ class ContactForm extends Component {
     }
 
     this.props.contacts.push(user);
-    this.props.updateState(this.props.contacts);
+    this.props.addContact(this.props.contacts);
+    // this.props.updateState(this.props.contacts);
     this.resetInput();
   };
 
@@ -53,11 +55,11 @@ class ContactForm extends Component {
         <h1>Phonebook</h1>
         <div className={styles.InputsDiv}>
           <label className={styles.LabelContactForm}>
-            Name{' '}
+            Name
             <input
               className={styles.Input}
-              onChange={this.props.handleChangeInState}
-              value={this.props.name}
+              onChange={this.handleChangeInState}
+              value={this.state.name}
               type="text"
               name="name"
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -69,8 +71,8 @@ class ContactForm extends Component {
             Number
             <input
               className={styles.Input}
-              onChange={this.props.handleChangeInState}
-              value={this.props.number}
+              onChange={this.handleChangeInState}
+              value={this.state.number}
               type="tel"
               name="number"
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -92,13 +94,11 @@ ContactForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  // name: state.name,
-  // number: state.number,
+  contacts: state.rootPhoneBookReducer.contactsReducer.contacts,
 });
 
 const mapDispatchToProps = dispatch => ({
-  // resetInput: () => dispatch(ContactFormActions.resetInput()),
-  // handleChangeInState: () => dispatch(ContactFormActions.handleChangeInState),
+  addContact: value => dispatch(actions.addContact(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

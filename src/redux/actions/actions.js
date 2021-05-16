@@ -10,4 +10,37 @@ const addLocalStorageContacts = value => ({
   payload: value,
 });
 
-export default { deleteContact, addLocalStorageContacts };
+const filterContacts = value => ({
+  type: types.filterContacts,
+  payload: value,
+});
+
+const setFilteredContactsEmpty = () => ({
+  type: types.setFilteredContactsEmpty,
+  payload: [],
+});
+
+const updateState = value => ({
+  type: types.updateState,
+  payload: value,
+});
+
+const handleFilter = value => ({
+  type: types.handleFilter,
+  payload: value,
+});
+
+const addContact = value => ({
+  type: types.addContact,
+  payload: value,
+});
+
+export default {
+  deleteContact,
+  addLocalStorageContacts,
+  filterContacts,
+  setFilteredContactsEmpty,
+  updateState,
+  handleFilter,
+  addContact,
+};

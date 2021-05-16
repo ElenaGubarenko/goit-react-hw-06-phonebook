@@ -8,56 +8,49 @@ import { connect } from 'react-redux';
 import actions from '../redux/actions/actions';
 
 class PhoneBook extends Component {
-  state = {
-    //   contacts: [
-    //     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    //     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    //     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    //     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    //   ],
-    filter: '',
-    filtredContacts: [],
-  };
+  // state = {
+  //   filter: '',
+  // };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
+    console.log('hi1');
     if (this.props.contacts) {
+      console.log('hi2');
       localStorage.setItem('contacts', JSON.stringify(this.props.contacts));
     }
   }
 
   componentDidMount() {
+    // console.log('hi1');
+    // if (this.props.contacts) {
+    //   console.log('hi2');
+    //   localStorage.setItem('contacts', JSON.stringify(this.props.contacts));
+    // }
+
     const localStorageContacts = JSON.parse(localStorage.getItem('contacts'));
     if (localStorageContacts) {
-      localStorageContacts(localStorageContacts);
+      this.props.addToLocalStorage(localStorageContacts);
     }
   }
 
-  handleState = e => {
-    const { value } = e.target;
-    this.setState({
-      filter: value,
-    });
-  };
+  // handleState = e => {
+  //   const { value } = e.target;
+  //   this.props.handleFilter(value);
+  // };
 
-  filterContactsByName = e => {
-    this.handleState(e);
+  // filterContactsByName = e => {
+  //   this.handleState(e);
 
-    if (this.state.filter !== '') {
-      const result = this.props.contacts.filter(contact => {
-        return contact.name
-          .toLowerCase()
-          .includes(this.state.filter.toLowerCase());
-      });
-      this.setState({ filteredContacts: result });
-      return;
-    }
-    this.setState({ filteredContacts: [] });
-  };
-
-  // deleteContact = id => {
-  //   this.setState(prevState => ({
-  //     contacts: prevState.contacts.filter(contact => contact.id !== id),
-  //   }));
+  //   if (this.props.filter !== '') {
+  //     const result = this.props.contacts.filter(contact => {
+  //       return contact.name
+  //         .toLowerCase()
+  //         .includes(this.props.filter.toLowerCase());
+  //     });
+  //     this.props.filterContacts(result);
+  //     return;
+  //   }
+  //   this.props.setFilteredContactsEmpty();
   // };
 
   // updateState = data => {
@@ -67,29 +60,28 @@ class PhoneBook extends Component {
   // };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <Container>
         <ContactForm
         // updateState={this.updateState}
         // handleChangeInState={this.handleChangeInState}
         // addContact={this.addContact}
-        // contacts={this.state.contacts}
         />
         <h1>Contacts</h1>
-        {/* <Filter
-          filterContactsByName={this.filterContactsByName}
-          name="filter"
-          value={this.state.filter}
-        /> */}
+        <Filter
+        // filterContactsByName={this.filterContactsByName}
+        // name="filter"
+        // value={this.state.filter}
+        />
         <ContactsList
-          filtredContacts={this.state.filtredContacts}
-          // contacts={
-          //   this.state.filter !== ''
-          //     ? this.state.filteredContacts
-          //     : this.state.contacts
-          // }
-          // deleteContact={this.props.deleteContact}
+        // filtredContacts={this.state.filtredContacts}
+        // contacts={
+        //   this.state.filter !== ''
+        //     ? this.state.filteredContacts
+        //     : this.state.contacts
+        // }
+        // deleteContact={this.props.deleteContact}
         />
       </Container>
     );
@@ -99,12 +91,13 @@ class PhoneBook extends Component {
 const mapStateToProps = state => ({
   contacts: state.contacts,
   filter: state.filter,
-  // filteredContacts: state.filtredContacts,
 });
 
 const mapDispatchToProps = dispatch => ({
-  // deleteContact: id => dispatch(actions.deleteContact(id)),
   addToLocalStorage: value => dispatch(actions.addLocalStorageContacts(value)),
+  filterContacts: value => dispatch(actions.filterContacts(value)),
+  setFilteredContactsEmpty: () => dispatch(actions.setFilteredContactsEmpty()),
+  handleFilter: value => dispatch(actions.handleFilter(value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhoneBook);

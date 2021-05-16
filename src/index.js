@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import 'modern-normalize/modern-normalize.css';
 
-import rootContactFormReducer from './redux/reducers/ContactFormReducer';
+// import rootContactFormReducer from './redux/reducers/ContactFormReducer';
 import rootPhoneBookReducer from './redux/reducers/PhoneBookReducer';
 
 import { createStore, combineReducers, applyMiddleware } from 'redux';
@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer = combineReducers({
-  rootContactFormReducer: rootContactFormReducer,
+  // rootContactFormReducer: rootContactFormReducer,
   rootPhoneBookReducer: rootPhoneBookReducer,
 });
 

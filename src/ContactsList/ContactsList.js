@@ -10,7 +10,10 @@ class ContactsList extends Component {
     console.log(this.props);
     return (
       <ul className={styles.ContactsList}>
-        {this.props.contacts.map(contact => {
+        {(this.props.filter !== ''
+          ? this.props.filteredContacts
+          : this.props.contacts
+        ).map(contact => {
           return (
             <li className={styles.ContactListItem} key={uuidv4()}>
               {contact.name}: {contact.number}
@@ -36,6 +39,8 @@ class ContactsList extends Component {
 
 const mapStateToProps = state => ({
   contacts: state.rootPhoneBookReducer.contactsReducer.contacts,
+  filter: state.rootPhoneBookReducer.contactsReducer.filter,
+  filteredContacts: state.rootPhoneBookReducer.contactsReducer.filtredContacts,
 });
 
 const mapDispatchToProps = dispatch => ({
