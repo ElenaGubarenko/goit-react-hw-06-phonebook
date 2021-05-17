@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { createReducer } from '@reduxjs/toolkit';
 // import types from '../actionTypes/actionTypes';
+import { createReducer } from '@reduxjs/toolkit';
 import actions from '../actions/actions';
 
 const contacts = [
@@ -9,38 +9,66 @@ const contacts = [
   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
+
 const filteredContacts = [];
 const filter = '';
 
-const toolkitContactsReducer = createReducer(contacts, {
-  [actions.deleteContact]: (state, action) => [
+const contactsReducer = createReducer(contacts, {
+  [actions.deleteContact]: (state, action) =>
     state.filter(contact => contact.id !== action.payload),
-  ],
-  [actions.addLocalStorageContacts]: (_, action) => [action.payload],
-  [actions.addContact]: (state, action) => [...state, action.payload],
+  [actions.addLocalStorageContacts]: (state, action) => action.payload,
+  [actions.addContact]: (state, action) => [action.payload, ...state],
 });
 
-const toolkitFilteredContactsReducer = createReducer(filteredContacts, {
-  [actions.filterContacts]: (_, action) => [action.payload],
-  [actions.setFilteredContactsEmpty]: (_, action) => [action.payload],
+const filterReducer = createReducer(filter, {
+  [actions.handleFilter]: (state, action) => action.payload,
 });
 
-const toolkitFilterReducer = createReducer(filter, {
-  [actions.handleFilter]: (_, action) => [action.payload],
+const filteredContactsReducer = createReducer(filteredContacts, {
+  [actions.filterContacts]: (state, action) => action.payload,
+  [actions.setFilteredContactsEmpty]: (state, action) => action.payload,
 });
 
-// const initialState = {
-//   contacts: [
-//     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-//     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-//     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-//     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-//   ],
-//   filteredContacts: [],
-//   filter: '',
+export default combineReducers({
+  contactsReducer,
+  filterReducer,
+  filteredContactsReducer,
+});
+
+// const contactsReducer = (state = contacts, action) => {
+//   switch (action.type) {
+//     case types.deleteContact:
+//       return state.filter(contact => contact.id !== action.payload);
+//     case types.addLocalStorageContacts:
+//       return action.payload;
+//     case types.addContact:
+//       return [...state, action.payload];
+//     default:
+//       return state;
+//   }
 // };
 
-// const contactsReducer = (state = initialState, action) => {
+// const filterReducer = (state = filter, action) => {
+//   switch (action.type) {
+//     case types.handleFilter:
+//       return action.payload;
+//     default:
+//       return state;
+//   }
+// };
+
+// const filteredContactsReducer = (state = filteredContacts, action) => {
+//   switch (action.type) {
+//     case types.filterContacts:
+//       return action.payload;
+//     case types.setFilteredContactsEmpty:
+//       return action.payload;
+//     default:
+//       return state;
+//   }
+// };
+
+// const filterReducer = (state = initialState, action) => {
 //   switch (action.type) {
 //     case types.deleteContact:
 //       return {
@@ -62,7 +90,7 @@ const toolkitFilterReducer = createReducer(filter, {
 //     case types.setFilteredContactsEmpty:
 //       return {
 //         ...state,
-//         filteredContacts: action.payload,
+//         filteredContacts: [],
 //       };
 //     case types.handleFilter:
 //       return {
@@ -78,9 +106,3 @@ const toolkitFilterReducer = createReducer(filter, {
 //       return state;
 //   }
 // };
-
-export default combineReducers({
-  toolkitContactsReducer,
-  toolkitFilteredContactsReducer,
-  toolkitFilterReducer,
-});

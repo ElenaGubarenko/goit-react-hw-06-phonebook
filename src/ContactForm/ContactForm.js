@@ -90,7 +90,7 @@ ContactForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  contacts: state.toolkitContactsReducer,
+  contacts: state.contactsReducer,
 });
 
 const mapDispatchToProps = dispatch => ({

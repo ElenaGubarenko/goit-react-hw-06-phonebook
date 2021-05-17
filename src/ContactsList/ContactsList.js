@@ -37,9 +37,9 @@ class ContactsList extends Component {
 // };
 
 const mapStateToProps = state => ({
-  contacts: state.toolkitContactsReducer,
-  filter: state.toolkitFilterReducer,
-  filteredContacts: state.toolkitFilteredContactsReducer,
+  contacts: state.contactsReducer,
+  filter: state.filterReducer,
+  filteredContacts: state.filteredContactsReducer,
 });
 
 const mapDispatchToProps = dispatch => ({

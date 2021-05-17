@@ -1,4 +1,5 @@
 import { Component } from 'react';
+// import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
 import { connect } from 'react-redux';
@@ -17,6 +18,7 @@ class Filter extends Component {
       this.props.filterContacts(result);
       return;
     }
+    // this.props.setFilteredContactsEmpty();
   };
 
   render() {
@@ -41,9 +43,9 @@ Filter.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  contacts: state.toolkitContactsReducer,
-  filter: state.toolkitFilterReducer,
-  filteredContacts: state.toolkitFilteredContactsReducer,
+  contacts: state.contactsReducer,
+  filter: state.filterReducer,
+  filteredContacts: state.filteredContactsReducer,
 });
 
 const mapDispatchToProps = dispatch => ({
